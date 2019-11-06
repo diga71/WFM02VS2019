@@ -1,0 +1,8 @@
+
+/Scheduler/Domain/.vs/
+/Scheduler/Domain/Entities/obj/
+/Scheduler/Domain/SchedulingTest/obj/
+
+*.pdb
+*.dll
+*.user

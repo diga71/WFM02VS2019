@@ -12,6 +12,11 @@ namespace Domain.UnitOfWork
         {
         }
 
+        protected override IDbDataParameter CreateDataParameter()
+        {
+            return new SQLiteParameter();
+        }
+
         protected override IDbConnection InitializeConnection()
         {
             IDbConnection connection = new SQLiteConnection(_ConnectionString);

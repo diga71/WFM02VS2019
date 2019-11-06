@@ -27,8 +27,24 @@ namespace Domain.Repository
             return mission;
         }
 
-        
+        public override void Insert(Mission entity)
+        {
+            base.Insert(entity);
+        }
 
+        protected override string StandardInsert
+        {
+            get
+            {
+                StringBuilder sb = new StringBuilder($"INSER INTO {TableName}");
+                return sb.ToString();
+            }
+        }
+
+        protected override void FillInsertParameters(IDbCommand cmd, Mission entity)
+        {
+            throw new NotImplementedException();
+        }
 
         protected override string StandardSelect
         {

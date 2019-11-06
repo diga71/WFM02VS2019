@@ -14,6 +14,11 @@ namespace Domain.Repository
         }
         protected override string TableName => "Activity";
 
+        protected override void FillInsertParameters(IDbCommand cmd, Activity entity)
+        {
+            throw new NotImplementedException();
+        }
+
         protected override Activity FillModel(IDataReader dr)
         {
             Activity activity = new Activity();
@@ -21,6 +26,15 @@ namespace Domain.Repository
             activity.Effort = GetDouble("EFFRT", dr);
             activity.Description = GetString("DESC", dr);
             return activity;
+        }
+
+        protected override string StandardInsert
+        {
+            get
+            {
+                StringBuilder sb = new StringBuilder($"INSER INTO {TableName}");
+                return sb.ToString();
+            }
         }
     }
 }

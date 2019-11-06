@@ -15,10 +15,9 @@ namespace Domain.UnitOfWork
     {
         IDbConnection Connection { get; }
         IDbTransaction Transaction { get; }
-
         public IDbCommand CreateCommand();
         public IDbCommand CreateCommand(string commandLine);
-
+        public IDbDataParameter CreateDbDataParameter();
         void BeginTransaction();
         void CommitTransaction();
         void RollbackTransaction();
@@ -37,7 +36,7 @@ namespace Domain.UnitOfWork
         bool Delete(ICollection<T> entityes);
     }
 
-    public abstract class DBUnitOfWork: IUnitOfWork
+    public abstract class DBUnitOfWork : IUnitOfWork
     {
         protected IDbConnection _DbConnection;
         protected IDbTransaction _DbTransaction;
@@ -49,29 +48,26 @@ namespace Domain.UnitOfWork
             _DbConnection = InitializeConnection();
             _DbConnection.Open();
         }
-
         protected abstract IDbConnection InitializeConnection();
-
+        protected abstract IDbDataParameter CreateDataParameter();
         public IDbConnection Connection => _DbConnection;
-
         public IDbTransaction Transaction => _DbTransaction;
-
         public IDbCommand CreateCommand()
         {
             IDbCommand command = Connection.CreateCommand();
             command.Transaction = Transaction;
             return command;
         }
-
         public IDbCommand CreateCommand(string commandLine)
         {
+            if (String.IsNullOrEmpty(commandLine))
+                throw new ApplicationException("Empty command line");
             IDbCommand command = Connection.CreateCommand();
             command.CommandText = commandLine.Trim();
             command.CommandType = CommandType.Text;
             command.Transaction = Transaction;
             return command;
         }
-
         public void BeginTransaction()
         {
             if (_DbTransaction == null)
@@ -79,7 +75,6 @@ namespace Domain.UnitOfWork
                 _DbTransaction = _DbConnection.BeginTransaction();
             }
         }
-
         public void CommitTransaction()
         {
             if (_DbTransaction != null)
@@ -88,7 +83,6 @@ namespace Domain.UnitOfWork
                 _DbTransaction = null;
             }
         }
-
         public void RollbackTransaction()
         {
             if (_DbTransaction != null)
@@ -97,7 +91,6 @@ namespace Domain.UnitOfWork
                 _DbTransaction = null;
             }
         }
-
         public void Dispose()
         {
             if (_DbTransaction != null)
@@ -113,11 +106,12 @@ namespace Domain.UnitOfWork
                 _DbConnection = null;
             }
         }
-
         public void Transactional(Action action)
         {
             try
             {
+                if (action == null)
+                    return;
                 BeginTransaction();
                 action();
                 CommitTransaction();
@@ -128,54 +122,9 @@ namespace Domain.UnitOfWork
                 RollbackTransaction();
             }
         }
-    }
-
-    public abstract class AbstractDBRepository<T> : IRepository<T> where T : IIdentity
-    {
-        public AbstractDBRepository(IUnitOfWork uow)
+        public IDbDataParameter CreateDbDataParameter()
         {
-            UnitOfWork = uow;
-        }
-        protected abstract string TableName { get; }
-
-        public IUnitOfWork UnitOfWork { get; private set; }
-
-        protected abstract T DataRowToModel(IDataReader dr);
-
-        public virtual bool Delete(T entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        public virtual bool Delete(ICollection<T> entityes)
-        {
-            throw new NotImplementedException();
-        }
-
-        public virtual ICollection<T> GetAll()
-        {
-            throw new NotImplementedException();
-        }
-
-        public virtual ICollection<T> GetAll(string where)
-        {
-            throw new NotImplementedException();
-        }
-
-        public virtual T GetById(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public virtual void Insert(T entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        public virtual void Update(T entity)
-        {
-            throw new NotImplementedException();
+            return CreateDataParameter();
         }
     }
-
 }

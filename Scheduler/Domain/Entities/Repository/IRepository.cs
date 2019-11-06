@@ -25,13 +25,16 @@ namespace Domain.Repository
 
         protected virtual string StandardSelect => @$"SELECT {TableName}.* FROM {TableName}";
 
+        protected abstract String StandardInsert { get; }
+
+        public IUnitOfWork UnitOfWork { get; private set; }
+
         public AbstractDBRepository(IUnitOfWork uow)
         {
             UnitOfWork = uow;
         }
 
-        public IUnitOfWork UnitOfWork { get; private set; }
-
+        #region GetFromDB
         protected string GetString(string field, IDataReader dr)
         {
             int pos = dr.GetOrdinal(field);
@@ -94,8 +97,9 @@ namespace Domain.Repository
                 return (DateTime?)null;
             }
         }
-
+        #endregion
         protected abstract T FillModel(IDataReader dr);
+        protected abstract void FillInsertParameters(IDbCommand cmd, T entity);
 
         public virtual bool Delete(T entity)
         {
@@ -119,6 +123,14 @@ namespace Domain.Repository
             return retVal;
         }
 
+        public virtual void Insert(T entity)
+        {
+            var cmd = UnitOfWork.CreateCommand(StandardInsert);
+            FillInsertParameters(cmd, entity);
+            //var retVal = cmd.ExecuteNonQuery();
+            entity.Id = (int) cmd.ExecuteScalar();
+        }
+
         public virtual ICollection<T> GetAll(string where)
         {
             throw new NotImplementedException();
@@ -129,10 +141,7 @@ namespace Domain.Repository
             throw new NotImplementedException();
         }
 
-        public virtual void Insert(T entity)
-        {
-            throw new NotImplementedException();
-        }
+        
 
         public virtual void Update(T entity)
         {

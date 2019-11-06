@@ -30,6 +30,22 @@ namespace SchedulingTest
         }
 
         [Fact]
+        public void OperatorInsert()
+        {
+            using (IUnitOfWork uow = UnitOfWorkFactory.Create())
+            {
+                OperatorRepository operatorRepository = new OperatorRepository(uow);
+                Operator newoperator = new Operator()
+                {
+                    EMail = "jDoe@.terranovasoftware.eu",
+                    FirstName = "John",
+                    LastName = "Doe"
+                };
+                operatorRepository.Insert(newoperator);
+            }
+        }
+
+        [Fact]
         public void MissionsLoad()
         {
             using (IUnitOfWork uow = UnitOfWorkFactory.Create())
