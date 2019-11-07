@@ -4,7 +4,7 @@ namespace Domain
 {
     public class Activity : IActivity
     {
-        public int Id { get; set; }
+        public long Id { get; set; }
 
         public String Description { get; set; }
 

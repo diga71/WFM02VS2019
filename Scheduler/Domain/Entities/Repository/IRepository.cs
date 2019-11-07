@@ -25,7 +25,8 @@ namespace Domain.Repository
 
         protected virtual string StandardSelect => @$"SELECT {TableName}.* FROM {TableName}";
 
-        protected abstract String StandardInsert { get; }
+        protected abstract string StandardInsert { get; }
+
 
         public IUnitOfWork UnitOfWork { get; private set; }
 
@@ -125,10 +126,11 @@ namespace Domain.Repository
 
         public virtual void Insert(T entity)
         {
+            if (entity == null)
+                throw new ApplicationException("Insert Entity Null");
             var cmd = UnitOfWork.CreateCommand(StandardInsert);
             FillInsertParameters(cmd, entity);
-            //var retVal = cmd.ExecuteNonQuery();
-            entity.Id = (int) cmd.ExecuteScalar();
+            entity.Id = (long) cmd.ExecuteScalar();
         }
 
         public virtual ICollection<T> GetAll(string where)

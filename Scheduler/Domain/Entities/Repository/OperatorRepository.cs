@@ -19,11 +19,7 @@ namespace Domain.Repository
         {
             get
             {
-                StringBuilder sb = new StringBuilder($"INSERT INTO {TableName}");
-                sb.Append(" (MAIL, LSTNM, FRSNM)");
-                sb.Append(" VALUES (@MAIL, @LSTNM, @FRSNM);");
-                sb.Append(" SELECT last_insert_rowid();");
-                return sb.ToString();
+                return UnitOfWork.QueryProvider.InsertString(this.TableName, "MAIL", "LSTNM", "FRSNM");
             }
         }
 
@@ -41,6 +37,8 @@ namespace Domain.Repository
         {
             if (cmd == null)
                 throw new ApplicationException("Null Command");
+            if (entity == null)
+                throw new ApplicationException("Null Entity");
 
             cmd.Parameters.Clear();
             IDbDataParameter dbparam = this.UnitOfWork.CreateDbDataParameter();

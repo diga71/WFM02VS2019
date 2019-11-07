@@ -5,7 +5,7 @@ namespace Domain
 {
     public class Mission : IMission
     {
-        public int Id { get; set; }
+        public long Id { get; set; }
         public string Description { get; set; }
         public IOperator Operator { get; set; }
         public IActivity Activity { get; set; }

@@ -1,8 +1,12 @@
-
+/Scheduler/.vs/
 /Scheduler/Domain/.vs/
 /Scheduler/Domain/Entities/obj/
+/Scheduler/Domain/Entities/bin/
 /Scheduler/Domain/SchedulingTest/obj/
+/Scheduler/Domain/SchedulingTest/bin/
 
 *.pdb
 *.dll
 *.user
+*.suo
+*.dtbcache

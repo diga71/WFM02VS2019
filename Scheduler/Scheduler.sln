@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29326.143
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Entities\Domain.csproj", "{96B544DB-1E4F-480A-B9E4-61887A6BFDA5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SchedulingTest", "Domain\SchedulingTest\SchedulingTest.csproj", "{3F82F921-A513-468A-AEA2-321759683DB2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{96B544DB-1E4F-480A-B9E4-61887A6BFDA5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96B544DB-1E4F-480A-B9E4-61887A6BFDA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96B544DB-1E4F-480A-B9E4-61887A6BFDA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96B544DB-1E4F-480A-B9E4-61887A6BFDA5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F82F921-A513-468A-AEA2-321759683DB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F82F921-A513-468A-AEA2-321759683DB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F82F921-A513-468A-AEA2-321759683DB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F82F921-A513-468A-AEA2-321759683DB2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CEE6A31D-F63E-4DEF-B371-EAFAE0AADD43}
+	EndGlobalSection
+EndGlobal

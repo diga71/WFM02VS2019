@@ -8,13 +8,14 @@ namespace Domain.UnitOfWork
 {
     public interface IIdentity
     {
-        public int Id { get; set; }
+        public long Id { get; set; }
     }
 
     public interface IUnitOfWork : IDisposable
     {
         IDbConnection Connection { get; }
         IDbTransaction Transaction { get; }
+        IQueryProvider QueryProvider { get; }
         public IDbCommand CreateCommand();
         public IDbCommand CreateCommand(string commandLine);
         public IDbDataParameter CreateDbDataParameter();
@@ -24,34 +25,35 @@ namespace Domain.UnitOfWork
         void Transactional(Action action);
     }
 
-    public interface IRepository<T> where T : IIdentity
+    public interface IQueryProvider
     {
-        IUnitOfWork UnitOfWork { get; }
-        T GetById(int id);
-        ICollection<T> GetAll();
-        ICollection<T> GetAll(string where);
-        void Update(T entity);
-        void Insert(T entity);
-        bool Delete(T entity);
-        bool Delete(ICollection<T> entityes);
+        string InsertString(string table, params string[] values); //Provare con le espressioni linq
+        string SelectString(string table, params string[] values);
+        string UpdateString(string table, params string[] values); //Provare con le espressioni linq
+        string DeleteString(string table, int identity);
     }
 
     public abstract class DBUnitOfWork : IUnitOfWork
     {
-        protected IDbConnection _DbConnection;
-        protected IDbTransaction _DbTransaction;
-        protected string _ConnectionString;
+        protected IDbConnection _DbConnection = null;
+        protected IDbTransaction _DbTransaction = null;
+        protected string _ConnectionString = null;
+        protected IQueryProvider _QueryProvider = null;
 
         public DBUnitOfWork(string connectionString)
         {
             _ConnectionString = connectionString;
             _DbConnection = InitializeConnection();
+            _QueryProvider = InitializeQueryProvider();
             _DbConnection.Open();
         }
+        protected abstract IQueryProvider InitializeQueryProvider();
         protected abstract IDbConnection InitializeConnection();
         protected abstract IDbDataParameter CreateDataParameter();
         public IDbConnection Connection => _DbConnection;
         public IDbTransaction Transaction => _DbTransaction;
+        public IQueryProvider QueryProvider => _QueryProvider;
+
         public IDbCommand CreateCommand()
         {
             IDbCommand command = Connection.CreateCommand();
@@ -100,7 +102,7 @@ namespace Domain.UnitOfWork
             }
             if (_DbConnection != null)
             {
-                if(_DbConnection.State == ConnectionState.Open)
+                if (_DbConnection.State == ConnectionState.Open)
                     _DbConnection.Close();
                 _DbConnection.Dispose();
                 _DbConnection = null;
@@ -116,7 +118,7 @@ namespace Domain.UnitOfWork
                 action();
                 CommitTransaction();
             }
-            catch(Exception err)
+            catch (Exception err)
             {
                 System.Diagnostics.Debug.WriteLine(err.ToString());
                 RollbackTransaction();
@@ -127,4 +129,5 @@ namespace Domain.UnitOfWork
             return CreateDataParameter();
         }
     }
+
 }
