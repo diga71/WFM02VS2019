@@ -8,21 +8,21 @@ using Xunit;
 
 namespace SchedulingTest
 {
-    public class DomainInsertTest
+    public class DomainDomainUpdateTestInsertTest
     {
         [Fact]
-        public void OperatorMailUpdate()
+        public void OperatorUpdate()
         {
             using (IUnitOfWork uow = UnitOfWorkFactory.Create())
             {
                 OperatorRepository operatorRepository = new OperatorRepository(uow);
-                Operator newoperator = new Operator()
+                var operators = operatorRepository.GetAll();
+                if (operators.Count > 0)
                 {
-                    EMail = "jDoe@.terranovasoftware.eu",
-                    FirstName = "John",
-                    LastName = "Doe"
-                };
-                operatorRepository.Insert(newoperator);
+                    Operator myoperator = operators.FirstOrDefault();
+                    myoperator.EMail += " (up)";
+                    operatorRepository.Update(myoperator);
+                }
             }
         }
     }

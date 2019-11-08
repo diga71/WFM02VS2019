@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Domain.QueryProvider;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -15,7 +16,7 @@ namespace Domain.UnitOfWork
     {
         IDbConnection Connection { get; }
         IDbTransaction Transaction { get; }
-        IQueryProvider QueryProvider { get; }
+        IDbQueryProvider QueryProvider { get; }
         public IDbCommand CreateCommand();
         public IDbCommand CreateCommand(string commandLine);
         public IDbDataParameter CreateDbDataParameter();
@@ -25,34 +26,26 @@ namespace Domain.UnitOfWork
         void Transactional(Action action);
     }
 
-    public interface IQueryProvider
-    {
-        string InsertString(string table, params string[] values); //Provare con le espressioni linq
-        string SelectString(string table, params string[] values);
-        string UpdateString(string table, params string[] values); //Provare con le espressioni linq
-        string DeleteString(string table, int identity);
-    }
-
     public abstract class DBUnitOfWork : IUnitOfWork
     {
         protected IDbConnection _DbConnection = null;
         protected IDbTransaction _DbTransaction = null;
         protected string _ConnectionString = null;
-        protected IQueryProvider _QueryProvider = null;
+        protected IDbQueryProvider _DbQueryProvider = null;
 
         public DBUnitOfWork(string connectionString)
         {
             _ConnectionString = connectionString;
             _DbConnection = InitializeConnection();
-            _QueryProvider = InitializeQueryProvider();
+            _DbQueryProvider = InitializeDbQueryProvider();
             _DbConnection.Open();
         }
-        protected abstract IQueryProvider InitializeQueryProvider();
+        protected abstract IDbQueryProvider InitializeDbQueryProvider();
         protected abstract IDbConnection InitializeConnection();
         protected abstract IDbDataParameter CreateDataParameter();
         public IDbConnection Connection => _DbConnection;
         public IDbTransaction Transaction => _DbTransaction;
-        public IQueryProvider QueryProvider => _QueryProvider;
+        public IDbQueryProvider QueryProvider => _DbQueryProvider;
 
         public IDbCommand CreateCommand()
         {

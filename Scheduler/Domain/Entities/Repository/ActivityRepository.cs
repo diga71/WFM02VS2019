@@ -28,6 +28,11 @@ namespace Domain.Repository
             return activity;
         }
 
+        protected override void FillUpdateParameters(IDbCommand cmd, Activity entity)
+        {
+            throw new NotImplementedException();
+        }
+
         protected override string StandardInsert
         {
             get
@@ -36,5 +41,7 @@ namespace Domain.Repository
                 return sb.ToString();
             }
         }
+
+        protected override string StandardUpdate => throw new NotImplementedException();
     }
 }

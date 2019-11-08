@@ -23,6 +23,14 @@ namespace Domain.Repository
             }
         }
 
+        protected override string StandardUpdate
+        {
+            get
+            {
+                return UnitOfWork.QueryProvider.UpdateString(this.TableName, "MAIL", "LSTNM", "FRSNM");
+            }
+        }
+
         protected override Operator FillModel(IDataReader dr)
         {
             Operator oper = new Operator();
@@ -34,6 +42,25 @@ namespace Domain.Repository
         }
 
         protected override void FillInsertParameters(IDbCommand cmd, Operator entity)
+        {
+            if (cmd == null)
+                throw new ApplicationException("Null Command");
+            if (entity == null)
+                throw new ApplicationException("Null Entity");
+            FillParametersCore(cmd, entity, false);
+        }
+
+        protected override void FillUpdateParameters(IDbCommand cmd, Operator entity)
+        {
+            if (cmd == null)
+                throw new ApplicationException("Null Command");
+            if (entity == null)
+                throw new ApplicationException("Null Entity");
+
+            FillParametersCore(cmd, entity, true);
+        }
+
+        private void FillParametersCore(IDbCommand cmd, Operator entity, bool identity)
         {
             if (cmd == null)
                 throw new ApplicationException("Null Command");
@@ -59,6 +86,14 @@ namespace Domain.Repository
             dbparam.ParameterName = "FRSNM";
             dbparam.Size = 50;
             cmd.Parameters.Add(dbparam);
+            if(identity)
+            {
+                dbparam = this.UnitOfWork.CreateDbDataParameter();
+                dbparam.Value = entity.Id;
+                dbparam.DbType = DbType.Int64;
+                dbparam.ParameterName = "ID";
+                cmd.Parameters.Add(dbparam);
+            }
         }
     }
 }

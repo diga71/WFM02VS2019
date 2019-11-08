@@ -46,6 +46,11 @@ namespace Domain.Repository
             throw new NotImplementedException();
         }
 
+        protected override void FillUpdateParameters(IDbCommand cmd, Mission entity)
+        {
+            throw new NotImplementedException();
+        }
+
         protected override string StandardSelect
         {
             get { return @$"SELECT {TableName}.*, Activity.*, Operator.* 
@@ -53,5 +58,7 @@ namespace Domain.Repository
                     INNER JOIN Activity ON Activity.ID = Mission.IDACT 
                     LEFT JOIN Operator ON Operator.ID = Mission.IDOPE"; }
         }
+
+        protected override string StandardUpdate => throw new NotImplementedException();
     }
 }

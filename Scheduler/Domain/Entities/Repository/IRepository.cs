@@ -27,6 +27,8 @@ namespace Domain.Repository
 
         protected abstract string StandardInsert { get; }
 
+        protected abstract string StandardUpdate { get; }
+
 
         public IUnitOfWork UnitOfWork { get; private set; }
 
@@ -101,6 +103,7 @@ namespace Domain.Repository
         #endregion
         protected abstract T FillModel(IDataReader dr);
         protected abstract void FillInsertParameters(IDbCommand cmd, T entity);
+        protected abstract void FillUpdateParameters(IDbCommand cmd, T entity);
 
         public virtual bool Delete(T entity)
         {
@@ -124,14 +127,6 @@ namespace Domain.Repository
             return retVal;
         }
 
-        public virtual void Insert(T entity)
-        {
-            if (entity == null)
-                throw new ApplicationException("Insert Entity Null");
-            var cmd = UnitOfWork.CreateCommand(StandardInsert);
-            FillInsertParameters(cmd, entity);
-            entity.Id = (long) cmd.ExecuteScalar();
-        }
 
         public virtual ICollection<T> GetAll(string where)
         {
@@ -143,11 +138,23 @@ namespace Domain.Repository
             throw new NotImplementedException();
         }
 
-        
+        public virtual void Insert(T entity)
+        {
+            if (entity == null)
+                throw new ApplicationException("Insert Entity Null");
+            var cmd = UnitOfWork.CreateCommand(StandardInsert);
+            FillInsertParameters(cmd, entity);
+            entity.Id = (long)cmd.ExecuteScalar();
+        }
+
 
         public virtual void Update(T entity)
         {
-            throw new NotImplementedException();
+            if (entity == null)
+                throw new ApplicationException("Insert Entity Null");
+            var cmd = UnitOfWork.CreateCommand(StandardUpdate);
+            FillUpdateParameters(cmd, entity);
+            var ret = (long)cmd.ExecuteNonQuery();
         }
     }
 
