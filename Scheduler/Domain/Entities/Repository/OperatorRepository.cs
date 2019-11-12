@@ -69,19 +69,19 @@ namespace Domain.Repository
 
             cmd.Parameters.Clear();
             IDbDataParameter dbparam = this.UnitOfWork.CreateDbDataParameter();
-            dbparam.Value = entity.EMail.Trim();
+            dbparam.Value = entity.EMail?.Trim();
             dbparam.DbType = DbType.String;
             dbparam.ParameterName = "MAIL";
             dbparam.Size = 50;
             cmd.Parameters.Add(dbparam);
             dbparam = this.UnitOfWork.CreateDbDataParameter();
-            dbparam.Value = entity.LastName.Trim();
+            dbparam.Value = entity.LastName?.Trim();
             dbparam.DbType = DbType.String;
             dbparam.ParameterName = "LSTNM";
             dbparam.Size = 50;
             cmd.Parameters.Add(dbparam);
             dbparam = this.UnitOfWork.CreateDbDataParameter();
-            dbparam.Value = entity.FirstName.Trim();
+            dbparam.Value = entity.FirstName?.Trim();
             dbparam.DbType = DbType.String;
             dbparam.ParameterName = "FRSNM";
             dbparam.Size = 50;

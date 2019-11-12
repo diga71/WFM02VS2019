@@ -68,6 +68,13 @@ namespace Domain.Repository
             return (double?)null;
         }
 
+        protected String PackDate(DateTime? dt)
+        {
+            if (dt == null || !dt.HasValue)
+                return null;
+            return $"{dt.Value.Year}{dt.Value.Month}{dt.Value.Day}{dt.Value.Hour}{dt.Value.Minute}{dt.Value.Second}";
+        }
+
         protected DateTime? GetDate(string field, IDataReader dr)
         {
             if (field == String.Empty)
