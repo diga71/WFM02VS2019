@@ -19,7 +19,7 @@ namespace Domain.Repository
         {
             get
             {
-                return UnitOfWork.QueryProvider.InsertString(this.TableName, "MAIL", "LSTNM", "FRSNM");
+                return UnitOfWork.QueryProvider.InsertString<Operator>(this.TableName, op=>op.EMail, op => op.FirstName, op => op.LastName);
             }
         }
 
@@ -27,17 +27,20 @@ namespace Domain.Repository
         {
             get
             {
-                return UnitOfWork.QueryProvider.UpdateString(this.TableName, "MAIL", "LSTNM", "FRSNM");
+                return UnitOfWork.QueryProvider.UpdateString<Operator>(this.TableName, 
+                    op=>op.EMail, 
+                    op => op.LastName, 
+                    op => op.FirstName);
             }
         }
 
         protected override Operator FillModel(IDataReader dr)
         {
             Operator oper = new Operator();
-            oper.Id = GetInt("ID", dr).Value;
-            oper.EMail = GetString("MAIL", dr);
-            oper.LastName = GetString("LSTNM", dr);
-            oper.FirstName = GetString("FRSNM", dr);
+            oper.Id = GetLong(o=>o.Id, dr);
+            oper.EMail = GetString(o => o.EMail, dr);
+            oper.LastName = GetString(o => o.LastName, dr);
+            oper.FirstName = GetString(o => o.FirstName, dr);
             return oper;
         }
 
@@ -68,31 +71,12 @@ namespace Domain.Repository
                 throw new ApplicationException("Null Entity");
 
             cmd.Parameters.Clear();
-            IDbDataParameter dbparam = this.UnitOfWork.CreateDbDataParameter();
-            dbparam.Value = entity.EMail?.Trim();
-            dbparam.DbType = DbType.String;
-            dbparam.ParameterName = "MAIL";
-            dbparam.Size = 50;
-            cmd.Parameters.Add(dbparam);
-            dbparam = this.UnitOfWork.CreateDbDataParameter();
-            dbparam.Value = entity.LastName?.Trim();
-            dbparam.DbType = DbType.String;
-            dbparam.ParameterName = "LSTNM";
-            dbparam.Size = 50;
-            cmd.Parameters.Add(dbparam);
-            dbparam = this.UnitOfWork.CreateDbDataParameter();
-            dbparam.Value = entity.FirstName?.Trim();
-            dbparam.DbType = DbType.String;
-            dbparam.ParameterName = "FRSNM";
-            dbparam.Size = 50;
-            cmd.Parameters.Add(dbparam);
+            SetString(o => o.EMail, entity.EMail, cmd);
+            SetString(o => o.LastName, entity.LastName, cmd);
+            SetString(o => o.FirstName, entity.FirstName, cmd);
             if(identity)
             {
-                dbparam = this.UnitOfWork.CreateDbDataParameter();
-                dbparam.Value = entity.Id;
-                dbparam.DbType = DbType.Int64;
-                dbparam.ParameterName = "ID";
-                cmd.Parameters.Add(dbparam);
+                SetLong(o => o.Id, entity.Id, cmd);
             }
         }
     }

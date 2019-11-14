@@ -27,6 +27,21 @@ namespace SchedulingTest
         }
 
         [Fact]
+        public void ActivityInsert()
+        {
+            using (IUnitOfWork uow = UnitOfWorkFactory.Create())
+            {
+                ActivityRepository activityRepository = new ActivityRepository(uow);
+                Activity newActivity = new Activity()
+                {
+                    Description = "Test Activity",
+                    Effort = 10.0,
+                };
+                activityRepository.Insert(newActivity);
+            }
+        }
+
+        [Fact]
         public void MissionInsert()
         {
             using (IUnitOfWork uow = UnitOfWorkFactory.Create())
@@ -39,7 +54,7 @@ namespace SchedulingTest
                 Mission newMission = new Mission()
                 {
                     Description = "OnlyForTest",
-                    Operator = fO,
+                    WFOperator = fO,
                     Activity = fA,
                     StartDate = DateTime.Now
                 };

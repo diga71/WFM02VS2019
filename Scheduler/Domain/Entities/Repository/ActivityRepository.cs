@@ -41,35 +41,20 @@ namespace Domain.Repository
                 throw new ApplicationException("Null Entity");
             //"EFFRT", "DESC"
             cmd.Parameters.Clear();
-            IDbDataParameter dbparam = this.UnitOfWork.CreateDbDataParameter();
-            dbparam.Value = entity.Description?.Trim();
-            dbparam.DbType = DbType.String;
-            dbparam.ParameterName = "DESC";
-            dbparam.Size = 50;
-            cmd.Parameters.Add(dbparam);
-
-            dbparam = this.UnitOfWork.CreateDbDataParameter();
-            dbparam.Value = entity.Effort;
-            dbparam.DbType = DbType.Double;
-            dbparam.ParameterName = "EFFRT";
-            dbparam.Size = 50;
-            cmd.Parameters.Add(dbparam);
+            SetString(o => o.Description, entity.Description?.Trim(), cmd);
+            SetDouble(o => o.Effort, entity.Effort, cmd);
             if (identity)
             {
-                dbparam = this.UnitOfWork.CreateDbDataParameter();
-                dbparam.Value = entity.Id;
-                dbparam.DbType = DbType.Int64;
-                dbparam.ParameterName = "ID";
-                cmd.Parameters.Add(dbparam);
+                SetLong(o => o.Id, entity.Id, cmd);
             }
         }
 
         protected override Activity FillModel(IDataReader dr)
         {
             Activity activity = new Activity();
-            activity.Id = GetInt("ID", dr).Value;
-            activity.Effort = GetDouble("EFFRT", dr);
-            activity.Description = GetString("DESC", dr);
+            activity.Id = GetLong(ac => ac.Id, dr);
+            activity.Effort = GetDouble(ac => ac.Effort, dr);
+            activity.Description = GetString(ac => ac.Description, dr);
             return activity;
         }
 
@@ -77,7 +62,7 @@ namespace Domain.Repository
         {
             get
             {
-                return UnitOfWork.QueryProvider.InsertString(this.TableName, "EFFRT", "DESC");
+                return UnitOfWork.QueryProvider.InsertString<Activity>(this.TableName, ac => ac.Description, ac => ac.Effort.ToString());
             }
         }
 
@@ -85,7 +70,7 @@ namespace Domain.Repository
         {
             get
             {
-                return UnitOfWork.QueryProvider.UpdateString(this.TableName, "EFFRT", "DESC");
+                return UnitOfWork.QueryProvider.UpdateString<Activity>(this.TableName, ac => ac.Effort.ToString(), ac => ac.Description);
             }
         }
     }

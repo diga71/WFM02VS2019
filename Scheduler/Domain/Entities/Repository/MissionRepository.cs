@@ -21,9 +21,14 @@ namespace Domain.Repository
         protected override Mission FillModel(IDataReader dr)
         {
             Mission mission = new Mission();
-            mission.Id = GetInt("ID", dr).Value;
-            mission.Description = GetString("DESC", dr);
-            mission.StartDate = GetDate("DTIN", dr);
+            mission.Id = GetLong(m=>m.Id, dr);
+            mission.IdOpe = GetLong(m => m.IdOpe, dr).Value;
+            mission.IdAct = GetLong(m => m.IdAct, dr).Value;
+            mission.Description = GetString(m => m.Description, dr);
+            mission.StartDate = GetDate(m => m.StartDate, dr);
+            mission.EndDate = GetDate(m => m.EndDate, dr);
+            //Si riempie anche Operator? Activity?
+
             return mission;
         }
 
@@ -44,46 +49,15 @@ namespace Domain.Repository
                 throw new ApplicationException("Null Entity");
             //"IDOPE", "IDACT", "DESC", "DTIN", "DTEN"
             cmd.Parameters.Clear();
-            IDbDataParameter dbparam = this.UnitOfWork.CreateDbDataParameter();
-            dbparam.Value = entity.Operator != null ? entity.Operator.Id : (long?) null;
-            dbparam.DbType = DbType.Int64;
-            dbparam.ParameterName = "IDOPE";
-            cmd.Parameters.Add(dbparam);
+            SetLong(m => m.IdOpe, entity.IdOpe, cmd);
+            SetLong(m => m.IdAct, entity.IdAct, cmd);
+            SetString(m => m.Description, entity.Description, cmd);
 
-            dbparam = this.UnitOfWork.CreateDbDataParameter();
-            dbparam.Value = entity.Activity != null ? entity.Activity.Id : (long?)null;
-            dbparam.DbType = DbType.Int64;
-            dbparam.ParameterName = "IDACT";
-            cmd.Parameters.Add(dbparam);
-
-            dbparam = this.UnitOfWork.CreateDbDataParameter();
-            dbparam.Value = entity.Description?.Trim();
-            dbparam.DbType = DbType.String;
-            dbparam.ParameterName = "DESC";
-            dbparam.Size = 50;
-            cmd.Parameters.Add(dbparam);
-
-            dbparam = this.UnitOfWork.CreateDbDataParameter();
-            dbparam.Value = PackDate(entity.StartDate);
-            dbparam.DbType = DbType.String;
-            dbparam.ParameterName = "DTIN";
-            dbparam.Size = 50;
-            cmd.Parameters.Add(dbparam);
-
-            dbparam = this.UnitOfWork.CreateDbDataParameter();
-            dbparam.Value = PackDate(entity.EndDate);
-            dbparam.DbType = DbType.String;
-            dbparam.ParameterName = "DTEN";
-            dbparam.Size = 50;
-            cmd.Parameters.Add(dbparam);
-
+            SetDate(m => m.StartDate, entity.StartDate, cmd);
+            SetDate(m => m.EndDate, entity.EndDate, cmd);
             if (identity)
             {
-                dbparam = this.UnitOfWork.CreateDbDataParameter();
-                dbparam.Value = entity.Id;
-                dbparam.DbType = DbType.Int64;
-                dbparam.ParameterName = "ID";
-                cmd.Parameters.Add(dbparam);
+                SetLong(o => o.Id, entity.Id, cmd);
             }
         }
 
@@ -108,7 +82,8 @@ namespace Domain.Repository
         {
             get
             {
-                return UnitOfWork.QueryProvider.InsertString(this.TableName, "IDOPE", "IDACT", "DESC", "DTIN", "DTEN");
+                return null;
+                //return UnitOfWork.QueryProvider.InsertString(this.TableName, "IDOPE", "IDACT", "DESC", "DTIN", "DTEN");
             }
         }
 
@@ -116,7 +91,11 @@ namespace Domain.Repository
         {
             get
             {
-                return UnitOfWork.QueryProvider.UpdateString(this.TableName, "IDOPE", "IDACT", "DESC", "DTIN", "DTEN");
+                return UnitOfWork.QueryProvider.UpdateString<Mission>(this.TableName, ms => ms.IdOpe.ToString(), 
+                    ms => ms.IdAct.ToString(),
+                    ms => ms.Description,
+                    ms => ms.StartDate.ToString(),
+                    ms => ms.EndDate.ToString());
             }
         }
     }

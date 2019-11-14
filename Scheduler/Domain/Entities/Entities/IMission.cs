@@ -8,8 +8,10 @@ namespace Domain
     {
         string Description { get; set; }
         IActivity Activity { get; set; }
+        long? IdAct { get; set; }
         DateTime? EndDate { get; }
-        IOperator Operator { get; set; }
+        IOperator WFOperator { get; set; }
+        long? IdOpe { get; set; }
         DateTime? StartDate { get; set; }
     }
 }

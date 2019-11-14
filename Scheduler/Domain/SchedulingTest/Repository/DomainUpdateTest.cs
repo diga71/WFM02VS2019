@@ -25,5 +25,22 @@ namespace SchedulingTest
                 }
             }
         }
+
+        [Fact]
+        public void MissionUpdate()
+        {
+            using (IUnitOfWork uow = UnitOfWorkFactory.Create())
+            {
+                MissionRepository missionRepository = new MissionRepository(uow);
+                var missions = missionRepository.GetAll();
+                if (missions.Count > 0)
+                {
+                    Mission myMission = missions.FirstOrDefault();
+                    myMission.Description += " (desc)";
+                    myMission.StartDate = myMission.StartDate.Value.AddDays(7);
+                    missionRepository.Update(myMission);
+                }
+            }
+        }
     }
 }
