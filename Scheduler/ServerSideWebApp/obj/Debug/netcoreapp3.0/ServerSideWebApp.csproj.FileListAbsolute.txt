@@ -9,6 +9,7 @@ C:\Users\lfrigenti\source\repos\WFM02VS2019\Scheduler\ServerSideWebApp\bin\Debug
 C:\Users\lfrigenti\source\repos\WFM02VS2019\Scheduler\ServerSideWebApp\bin\Debug\netcoreapp3.0\ServerSideWebApp.pdb
 C:\Users\lfrigenti\source\repos\WFM02VS2019\Scheduler\ServerSideWebApp\bin\Debug\netcoreapp3.0\ServerSideWebApp.Views.dll
 C:\Users\lfrigenti\source\repos\WFM02VS2019\Scheduler\ServerSideWebApp\bin\Debug\netcoreapp3.0\ServerSideWebApp.Views.pdb
+C:\Users\lfrigenti\source\repos\WFM02VS2019\Scheduler\ServerSideWebApp\obj\Debug\netcoreapp3.0\ServerSideWebApp.csprojAssemblyReference.cache
 C:\Users\lfrigenti\source\repos\WFM02VS2019\Scheduler\ServerSideWebApp\obj\Debug\netcoreapp3.0\staticwebassets\ServerSideWebApp.StaticWebAssets.Manifest.cache
 C:\Users\lfrigenti\source\repos\WFM02VS2019\Scheduler\ServerSideWebApp\obj\Debug\netcoreapp3.0\staticwebassets\ServerSideWebApp.StaticWebAssets.xml
 C:\Users\lfrigenti\source\repos\WFM02VS2019\Scheduler\ServerSideWebApp\obj\Debug\netcoreapp3.0\ServerSideWebApp.MvcApplicationPartsAssemblyInfo.cache
@@ -33,6 +34,7 @@ C:\Users\lfrigenti\source\repos\WFM02VS2019\Scheduler\ServerSideWebApp\obj\Debug
 C:\Users\lfrigenti\source\repos\WFM02VS2019\Scheduler\ServerSideWebApp\obj\Debug\netcoreapp3.0\Razor\Shared\MainLayout.razor.g.cs
 C:\Users\lfrigenti\source\repos\WFM02VS2019\Scheduler\ServerSideWebApp\obj\Debug\netcoreapp3.0\Razor\Shared\NavMenu.razor.g.cs
 C:\Users\lfrigenti\source\repos\WFM02VS2019\Scheduler\ServerSideWebApp\obj\Debug\netcoreapp3.0\Razor\_Imports.razor.g.cs
+C:\Users\lfrigenti\source\repos\WFM02VS2019\Scheduler\ServerSideWebApp\obj\Debug\netcoreapp3.0\Razor\Pages\Originale_Host.cshtml.g.cs
 C:\Users\lfrigenti\source\repos\WFM02VS2019\Scheduler\ServerSideWebApp\obj\Debug\netcoreapp3.0\Razor\Pages\_Host.cshtml.g.cs
 C:\Users\lfrigenti\source\repos\WFM02VS2019\Scheduler\ServerSideWebApp\obj\Debug\netcoreapp3.0\ServerSideWebApp.RazorAssemblyInfo.cache
 C:\Users\lfrigenti\source\repos\WFM02VS2019\Scheduler\ServerSideWebApp\obj\Debug\netcoreapp3.0\ServerSideWebApp.RazorAssemblyInfo.cs
@@ -44,5 +46,3 @@ C:\Users\lfrigenti\source\repos\WFM02VS2019\Scheduler\ServerSideWebApp\obj\Debug
 C:\Users\lfrigenti\source\repos\WFM02VS2019\Scheduler\ServerSideWebApp\obj\Debug\netcoreapp3.0\ServerSideWebApp.dll
 C:\Users\lfrigenti\source\repos\WFM02VS2019\Scheduler\ServerSideWebApp\obj\Debug\netcoreapp3.0\ServerSideWebApp.pdb
 C:\Users\lfrigenti\source\repos\WFM02VS2019\Scheduler\ServerSideWebApp\obj\Debug\netcoreapp3.0\ServerSideWebApp.csproj.CopyComplete
-C:\Users\lfrigenti\source\repos\WFM02VS2019\Scheduler\ServerSideWebApp\obj\Debug\netcoreapp3.0\ServerSideWebApp.csprojAssemblyReference.cache
-C:\Users\lfrigenti\source\repos\WFM02VS2019\Scheduler\ServerSideWebApp\obj\Debug\netcoreapp3.0\Razor\Pages\Originale_Host.cshtml.g.cs

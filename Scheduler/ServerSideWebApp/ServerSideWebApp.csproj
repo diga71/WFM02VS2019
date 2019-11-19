@@ -11,4 +11,9 @@
     <None Remove="wwwroot\Nuova cartella\**" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Remove="Shared\MainLayout - Copia.razor" />
+    <Content Remove="Shared\NavMenu - Copia.razor" />
+  </ItemGroup>
+
 </Project>
