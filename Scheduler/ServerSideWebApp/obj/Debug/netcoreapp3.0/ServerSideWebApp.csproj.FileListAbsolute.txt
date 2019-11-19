@@ -44,3 +44,5 @@ C:\Users\lfrigenti\source\repos\WFM02VS2019\Scheduler\ServerSideWebApp\obj\Debug
 C:\Users\lfrigenti\source\repos\WFM02VS2019\Scheduler\ServerSideWebApp\obj\Debug\netcoreapp3.0\ServerSideWebApp.dll
 C:\Users\lfrigenti\source\repos\WFM02VS2019\Scheduler\ServerSideWebApp\obj\Debug\netcoreapp3.0\ServerSideWebApp.pdb
 C:\Users\lfrigenti\source\repos\WFM02VS2019\Scheduler\ServerSideWebApp\obj\Debug\netcoreapp3.0\ServerSideWebApp.csproj.CopyComplete
+C:\Users\lfrigenti\source\repos\WFM02VS2019\Scheduler\ServerSideWebApp\obj\Debug\netcoreapp3.0\ServerSideWebApp.csprojAssemblyReference.cache
+C:\Users\lfrigenti\source\repos\WFM02VS2019\Scheduler\ServerSideWebApp\obj\Debug\netcoreapp3.0\Razor\Pages\Originale_Host.cshtml.g.cs
