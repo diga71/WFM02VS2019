@@ -11,7 +11,7 @@ namespace Domain.Repository
     public interface IRepository<T> where T : IIdentity
     {
         IUnitOfWork UnitOfWork { get; }
-        T GetById(int id);
+        T GetById(long id);
         ICollection<T> GetAll();
         ICollection<T> GetAll(string where);
         void Update(T entity);
@@ -25,6 +25,8 @@ namespace Domain.Repository
         protected abstract string TableName { get; }
 
         protected virtual string StandardSelect => @$"SELECT {TableName}.* FROM {TableName}";
+
+        protected virtual string StandardSelectForId => @$"SELECT {TableName}.* FROM {TableName}";
 
         protected abstract string StandardInsert { get; }
 
@@ -305,15 +307,22 @@ namespace Domain.Repository
             return retVal;
         }
 
-
         public virtual ICollection<T> GetAll(string where)
         {
             throw new NotImplementedException();
         }
 
-        public virtual T GetById(int id)
+        public virtual T GetById(long id)
         {
-            throw new NotImplementedException();
+            string selectIdString = this.UnitOfWork.QueryProvider.SelectIdString(this.TableName, id);
+            var cmd = UnitOfWork.CreateCommand(selectIdString);
+            SetLong(o => o.Id, id, cmd);
+            IDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                return (this.FillModel(dr));
+            }
+            throw new ApplicationException($"Identity {id} not present in {TableName}");
         }
 
         public virtual void Insert(T entity)
@@ -324,7 +333,6 @@ namespace Domain.Repository
             FillInsertParameters(cmd, entity);
             entity.Id = (long)cmd.ExecuteScalar();
         }
-
 
         public virtual void Update(T entity)
         {

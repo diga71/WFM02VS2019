@@ -26,6 +26,12 @@ namespace SchedulingTest
             {
                 OperatorRepository operatorRepository = new OperatorRepository(uow);
                 var operators = operatorRepository.GetAll();
+                foreach(Operator op in operators)
+                {
+                    long identity = op.Id;
+                    Operator wfOperator = operatorRepository.GetById(identity);
+                    Assert.Equal(op.GetSummary(), wfOperator.GetSummary());
+                }
             }
         }
 

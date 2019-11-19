@@ -10,6 +10,7 @@ namespace Domain.QueryProvider
     {
         //string InsertString(string table, params string[] values); //Provare con le espressioni linq
         string SelectString(string table, params string[] values);
+        string SelectIdString(string table, long id);
         string UpdateString<T>(string table, params Expression<Func<T, String>>[] expression) where T : class, new();
         string DeleteString(string table, int identity);
         string InsertString<T>(string table, params Expression<Func<T, String>>[] expression) where T : class, new();
@@ -22,12 +23,7 @@ namespace Domain.QueryProvider
             throw new NotImplementedException();
         }
 
-        //public virtual string InsertString(string table, params string[] values)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        public virtual string InsertString<T>(string table, params Expression<Func<T, string>>[] expression) where T : class, new()
+         public virtual string InsertString<T>(string table, params Expression<Func<T, string>>[] expression) where T : class, new()
         {
             throw new NotImplementedException();
         }
@@ -76,6 +72,11 @@ namespace Domain.QueryProvider
             sb.Append($" WHERE ID = @ID");
             string joined = sb.ToString();
             return joined;
+        }
+
+        public string SelectIdString(string table, long id)
+        {
+            return $"SELECT {table}.* FROM {table} WHERE {table}.Id = @Id";
         }
     }
 }

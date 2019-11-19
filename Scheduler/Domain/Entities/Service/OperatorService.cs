@@ -18,11 +18,46 @@ namespace Domain.Service
             return Task.Run(() => GetOperators());
         }
 
+        public Task<Operator> RetrieveOperatorAsync(long id)
+        {
+            return Task.Run(() => RetrieveOperator(id));
+        }
+
+        public Task<Operator> UpdateOperatorsync(Operator wfOperator)
+        {
+            return Task.Run(() => UpdateOperator(wfOperator));
+        }
+
+        public Task<Operator> CreateOperatorAsync(Operator wfOperator)
+        {
+            return Task.Run(() => CreateOperator(wfOperator));
+        }
+
         private List<Operator> GetOperators()
         {
             OperatorRepository operatorRepository = new OperatorRepository(this.UnitOfWork);
             var operators = operatorRepository.GetAll();
             return operators.ToList();
+        }
+
+        private Operator UpdateOperator(Operator wfOperator)
+        {
+            OperatorRepository operatorRepository = new OperatorRepository(this.UnitOfWork);
+            operatorRepository.Update(wfOperator);
+            return wfOperator;
+        }
+
+        private Operator CreateOperator(Operator wfOperator)
+        {
+            OperatorRepository operatorRepository = new OperatorRepository(this.UnitOfWork);
+            operatorRepository.Insert(wfOperator);
+            return wfOperator;
+        }
+
+        private Operator RetrieveOperator(long id)
+        {
+            OperatorRepository operatorRepository = new OperatorRepository(this.UnitOfWork);
+            return operatorRepository.GetById(id);
         }
     }
 }
