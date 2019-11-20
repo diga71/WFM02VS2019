@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Entities\D
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SchedulingTest", "Domain\SchedulingTest\SchedulingTest.csproj", "{3F82F921-A513-468A-AEA2-321759683DB2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServerSideWebApp", "ServerSideWebApp\ServerSideWebApp.csproj", "{FBCF1E6F-CBCE-4713-95AF-6BEA865E805F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{3F82F921-A513-468A-AEA2-321759683DB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3F82F921-A513-468A-AEA2-321759683DB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3F82F921-A513-468A-AEA2-321759683DB2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FBCF1E6F-CBCE-4713-95AF-6BEA865E805F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FBCF1E6F-CBCE-4713-95AF-6BEA865E805F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FBCF1E6F-CBCE-4713-95AF-6BEA865E805F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FBCF1E6F-CBCE-4713-95AF-6BEA865E805F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

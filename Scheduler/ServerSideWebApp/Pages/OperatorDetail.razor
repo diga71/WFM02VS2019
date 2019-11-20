@@ -1,0 +1,46 @@
+﻿@page "/operatorDetail"
+@using Domain
+@inject NavigationManager NavigationManager
+
+<div hidden="@Visibility">
+    <h1>Operator detail</h1>
+    <form>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="FirstName">Name</label>
+                <input type="text" class="form-control" id="FirstName" @bind="operatore.FirstName" />
+            </div>
+            <div class="form-group col-md-6">
+                <label for="LastName">Surname</label>
+                <input type="text" class="form-control" id="LastName" @bind="operatore.LastName" />
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-12">
+                <label for="EMail">Email</label>
+                <input type="email" class="form-control" id="inputEmail" placeholder="Email" @bind="operatore.EMail" />
+            </div>
+        </div>
+        <button @onclick="Save" class="btn btn-primary">Save</button>
+        <button @onclick="Back" class="btn btn-secondary">Back</button>
+    </form>
+</div>
+
+
+@code {
+
+    public bool Visibility { get { return operatore.Id == 0; } }
+
+    [Parameter]
+    public Domain.Operator operatore { get; set; }  
+
+    private void Save()
+    {
+
+    }
+
+    private void Back()
+    {
+        NavigationManager.NavigateTo("operator");
+    }
+}
