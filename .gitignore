@@ -5,6 +5,8 @@
 /Scheduler/Domain/Entities/bin/
 /Scheduler/Domain/SchedulingTest/obj/
 /Scheduler/Domain/SchedulingTest/bin/
+/Scheduler/ServerSideWebApp/obj/
+/Scheduler/ServerSideWebApp/bin/
 
 *.pdb
 *.dll
