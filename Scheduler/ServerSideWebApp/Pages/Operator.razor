@@ -16,6 +16,27 @@
     }
     else
     {
+        <BlazorGrid Items="@operators" PageSize="3">
+            <GridHeader>
+                <th>#</th>
+                <th>Last name</th>
+                <th>First name</th>
+                <th>EMail</th>
+                <th></th>
+            </GridHeader>
+            <GridRow>
+                @*<tr @ondblclick="@(e => DoubleClickRow(e, context))">*@
+                    <td>@context.Id.ToString()</td>
+                    <td>@context.LastName</td>
+                    <td>@context.FirstName</td>
+                    <td>@context.EMail</td>
+                    <td @onclick="@(e => ClickEditRow(e, context))"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></td>
+                @*</tr>*@
+            </GridRow>
+        </BlazorGrid>
+
+        @*<br />
+
         <table class="table table-hover">
             <thead class="thead-light">
                 <tr>
@@ -38,7 +59,7 @@
                     </tr>
                 }
             </tbody>
-        </table>
+        </table>*@
     }
 </div>
 
@@ -48,7 +69,7 @@
 
     Domain.Operator OperatoreDetail = new Domain.Operator() { Id = 0, FirstName = "", LastName = "", EMail = "" };
 
-    List<Domain.Operator> operators = new List<Domain.Operator>();
+    List<Domain.Operator> operators; // = new List<Domain.Operator>();
 
     void DoubleClickRow(MouseEventArgs e, Domain.Operator @operator)
     {

@@ -56,3 +56,5 @@ C:\Users\lfrigenti\source\repos\WFM02VS2019\Scheduler\ServerSideWebApp\obj\Debug
 C:\Users\lfrigenti\source\repos\WFM02VS2019\Scheduler\ServerSideWebApp\obj\Debug\netcoreapp3.0\ServerSideWebApp.pdb
 C:\Users\lfrigenti\source\repos\WFM02VS2019\Scheduler\ServerSideWebApp\obj\Debug\netcoreapp3.0\RazorDeclaration\Pages\OperatorDetail.razor.g.cs
 C:\Users\lfrigenti\source\repos\WFM02VS2019\Scheduler\ServerSideWebApp\obj\Debug\netcoreapp3.0\Razor\Pages\OperatorDetail.razor.g.cs
+C:\Users\lfrigenti\source\repos\WFM02VS2019\Scheduler\ServerSideWebApp\obj\Debug\netcoreapp3.0\RazorDeclaration\Pages\BlazorGrid.razor.g.cs
+C:\Users\lfrigenti\source\repos\WFM02VS2019\Scheduler\ServerSideWebApp\obj\Debug\netcoreapp3.0\Razor\Pages\BlazorGrid.razor.g.cs
