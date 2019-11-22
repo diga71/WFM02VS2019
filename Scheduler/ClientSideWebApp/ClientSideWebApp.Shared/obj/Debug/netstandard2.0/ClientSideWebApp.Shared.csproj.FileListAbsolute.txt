@@ -1,0 +1,7 @@
+C:\Users\lfrigenti\source\repos\WFM02VS2019\Scheduler\ClientSideWebApp\ClientSideWebApp.Shared\bin\Debug\netstandard2.0\ClientSideWebApp.Shared.deps.json
+C:\Users\lfrigenti\source\repos\WFM02VS2019\Scheduler\ClientSideWebApp\ClientSideWebApp.Shared\bin\Debug\netstandard2.0\ClientSideWebApp.Shared.dll
+C:\Users\lfrigenti\source\repos\WFM02VS2019\Scheduler\ClientSideWebApp\ClientSideWebApp.Shared\bin\Debug\netstandard2.0\ClientSideWebApp.Shared.pdb
+C:\Users\lfrigenti\source\repos\WFM02VS2019\Scheduler\ClientSideWebApp\ClientSideWebApp.Shared\obj\Debug\netstandard2.0\ClientSideWebApp.Shared.AssemblyInfoInputs.cache
+C:\Users\lfrigenti\source\repos\WFM02VS2019\Scheduler\ClientSideWebApp\ClientSideWebApp.Shared\obj\Debug\netstandard2.0\ClientSideWebApp.Shared.AssemblyInfo.cs
+C:\Users\lfrigenti\source\repos\WFM02VS2019\Scheduler\ClientSideWebApp\ClientSideWebApp.Shared\obj\Debug\netstandard2.0\ClientSideWebApp.Shared.dll
+C:\Users\lfrigenti\source\repos\WFM02VS2019\Scheduler\ClientSideWebApp\ClientSideWebApp.Shared\obj\Debug\netstandard2.0\ClientSideWebApp.Shared.pdb

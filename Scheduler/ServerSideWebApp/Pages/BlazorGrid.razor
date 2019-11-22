@@ -1,4 +1,5 @@
-﻿@typeparam T
+﻿@using Domain.UnitOfWork
+@typeparam T
 
 <table class="table">
     <thead>
@@ -7,27 +8,33 @@
     <tbody>
         @foreach (var item in ItemList)
         {
-            <tr class="jsgrid-row-item">@GridRow(item)</tr>
+            <tr class="jsgrid-row-item" @onclick="@(() => OnClickTR.InvokeAsync(GetId(item)))">@GridRow(item)</tr>
         }
     </tbody>
 </table>
-<div class="pagination">
+<div>
+    <button class="btn btn-outline-primary float-left" @onclick="NewItem">Add</button>
 
-    <button class="btn pagebutton btn-info" @onclick='(() => SetPagerSize("back"))'>&laquo;</button>
-    <button class="btn pagebutton btn-secondary" @onclick='(() => NavigateToPage("previous"))'>Prev</button>
+    <span class="pagebutton btn btn-link disabled float-right">Page @curPage of @totalPages</span>
+    @*  Non funziona da capire flusso
+        <button class="btn pagebutton btn-info float-right" @onclick='(() => SetPagerSize("forward"))'>&raquo;</button>
+    *@
+    <button class="btn pagebutton btn-secondary float-right" @onclick='(() => NavigateToPage("next"))'>Next</button>
 
-    @for (int i = startPage; i <= endPage; i++)
+
+    @for (int i = endPage; i >= startPage; i--)
     {
         var currentPage = i;
-        <button class="btn pagebutton @(currentPage==curPage?"currentpage":"")" @onclick='(async () => UpdateList(currentPage))'>
+        <button class="btn pagebutton  float-right @(currentPage==curPage?"currentpage":"")" @onclick='(async () => UpdateList(currentPage))'>
             @currentPage
         </button>
     }
 
-    <button class="btn pagebutton btn-secondary" @onclick='(() => NavigateToPage("next"))'>Next</button>
-    <button class="btn pagebutton btn-info" @onclick='(() => SetPagerSize("forward"))'>&raquo;</button>
 
-    <span class="pagebutton btn btn-link disabled">Page @curPage of @totalPages</span>
+    <button class="btn pagebutton btn-secondary float-right" @onclick='(() => NavigateToPage("previous"))'>Prev</button>
+
+    @* <button class="btn pagebutton btn-info float-right" @onclick='(() => SetPagerSize("back"))'>&laquo;</button>   *@
+
 
 </div>
 
@@ -39,6 +46,10 @@
     int startPage;
     int endPage;
 
+    [Parameter]
+    public EventCallback<string> OnClickTR { get; set; }
+    [Parameter]
+    public EventCallback NewItem { get; set; }
     [Parameter]
     public RenderFragment GridHeader { get; set; }
     [Parameter]
@@ -70,7 +81,7 @@
 
     public void SetPagerSize(string direction)
     {
-        if (direction == "forward" && endPage < totalPages)
+        if (direction == "forward" && endPage <= totalPages)
         {
             startPage = endPage + 1;
             if (endPage + pagerSize < totalPages)
@@ -81,12 +92,12 @@
             {
                 endPage = totalPages;
             }
-            this.StateHasChanged();
         }
         else if (direction == "back" && startPage > 1)
         {
             endPage = startPage - 1;
             startPage = startPage - pagerSize;
+            UpdateList(endPage);
         }
     }
 
@@ -115,5 +126,12 @@
             }
         }
         UpdateList(curPage);
+    }
+
+
+    public string GetId(T obj)
+    {
+        IIdentity identity = obj as IIdentity;
+        return identity.Id.ToString();
     }
 }

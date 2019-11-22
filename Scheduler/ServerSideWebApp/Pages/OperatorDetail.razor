@@ -4,32 +4,55 @@
 @using Domain
 @inject NavigationManager NavigationManager
 
-<div>
-    <h1>Operator detail</h1>
-    <div>
-        <p class="@UpdateResultCss">  @UpdateResult</p>
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <label for="FirstName">Name</label>
-                <input type="text" class="form-control" id="FirstName" @bind="operatore.FirstName" />
-            </div>
-            <div class="form-group col-md-6">
-                <label for="LastName">Surname</label>
-                <input type="text" class="form-control" id="LastName" @bind="operatore.LastName" />
-            </div>
-        </div>
-        <div class="form-row">
-            <div class="form-group col-md-12">
-                <label for="EMail">Email</label>
-                <input type="email" class="form-control" id="inputEmail" placeholder="Email" @bind="operatore.EMail" />
-            </div>
-        </div>
-        <button @onclick="Update" class="btn btn-primary">Save</button>
-        <button @onclick="Back" class="btn btn-secondary">Back</button>
-    </div>
-        
-</div>
+<style>
+    .div-main {       
+        animation-duration: 1s;
+        animation-name: slidein;
+        z-index: -1;
+    }
 
+    @@keyframes slidein {
+        from {
+            margin-left: -100%; 
+            width: 100%
+        }
+
+        to {
+           margin-left: 0%;   
+            width: 100%
+        }
+    }
+</style>
+<div class="div-main slidein">
+    <div class="card">
+        <div class="card-header">
+            Operator detail
+        </div>
+        <div class="card-body">
+            <p class="@UpdateResultCss">  @UpdateResult</p>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="FirstName">Name</label>
+                    <input type="text" class="form-control" id="FirstName" @bind="operatore.FirstName" />
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="LastName">Surname</label>
+                    <input type="text" class="form-control" id="LastName" @bind="operatore.LastName" />
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <label for="EMail">Email</label>
+                    <input type="email" class="form-control" id="inputEmail" placeholder="Email" @bind="operatore.EMail" />
+                </div>
+            </div>
+            <div>
+                <button @onclick="Update" class="btn btn-primary">Save</button>
+                <button @onclick="Back" class="btn btn-secondary">Back</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 @code {
 
@@ -56,7 +79,7 @@
         catch (Exception err)
         {
             UpdateResultCss = "text-danger";
-            UpdateResult = $"Si è verificato un errore: {err.Message}";           
+            UpdateResult = $"Si è verificato un errore: {err.Message}";
         }
     }
 

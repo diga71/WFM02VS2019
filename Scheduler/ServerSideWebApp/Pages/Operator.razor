@@ -2,55 +2,69 @@
 @using Domain
 @inject Domain.Service.OperatorService OperatorService
 @inject NavigationManager NavigationManager
-
 @*<OperatorDetail operatore="@OperatoreDetail">
-</OperatorDetail>*@
+    </OperatorDetail>*@
 
 
 <div>
-    <h1>List operator</h1>
+    <div class="card">
+        <div class="card-header">
+            List operator
+        </div>
+        <div class="card-body">
 
-    @if (operators == null)
-    {
-        <p><em>Loading...</em></p>
-    }
-    else
-    {
-        <BlazorGrid Items="@operators" PageSize="3">
-            <GridHeader>
-                <th>#</th>
-                <th>Last name</th>
-                <th>First name</th>
-                <th>EMail</th>
-                <th></th>
-            </GridHeader>
-            <GridRow>
-                    <td>@context.Id.ToString()</td>
-                    <td>@context.LastName</td>
-                    <td>@context.FirstName</td>
-                    <td>@context.EMail</td>
-                    <td @onclick="@(e => ClickEditRow(e, context))"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></td>
-            </GridRow>
-        </BlazorGrid>
-    }
+            @if (operators == null)
+            {
+                <p><em>Loading...</em></p>
+            }
+            else
+            {
+                <BlazorGrid NewItem="AddOperator" OnClickTR="DoubleClickRow" Items="@operators" PageSize="3">
+                    <GridHeader>
+                        <th>#</th>
+                        <th>Last name</th>
+                        <th>First name</th>
+                        <th>EMail</th>
+                        <th></th>
+                    </GridHeader>
+                    <GridRow>
+                        <td>@context.Id.ToString()</td>
+                        <td>@context.LastName</td>
+                        <td>@context.FirstName</td>
+                        <td>@context.EMail</td>
+                        <td @onclick="@(e => ClickEditRow(e, context))"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></td>
+                    </GridRow>
+                </BlazorGrid>
+            }
+        </div>
+    </div>
 </div>
 
 @code {
 
     List<Domain.Operator> operators;
 
-    //void DoubleClickRow(MouseEventArgs e, Domain.Operator operatore)
-    //{
-    //    NavigationManager.NavigateTo($"operatorDetail/{ operatore.Id}");        
-    //}
+    void DoubleClickRow(string operatoreId)
+    {
+        NavigationManager.NavigateTo($"operatorDetail/{operatoreId}");
+    }
 
     void ClickEditRow(MouseEventArgs e, Domain.Operator operatore)
     {
         NavigationManager.NavigateTo($"operatorDetail/{ operatore.Id}");
     }
 
+    void AddOperator()
+    {
+        NavigationManager.NavigateTo($"operatorDetail");
+    }
+
     protected override async Task OnInitializedAsync()
     {
         operators = await OperatorService.GetOperatorsAsync();
+        var operators2 = await OperatorService.GetOperatorsAsync();
+        var operators3 = await OperatorService.GetOperatorsAsync();
+        operators.AddRange(operators2);
+        operators.AddRange(operators3);
     }
 }

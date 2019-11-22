@@ -1,0 +1,5 @@
+C:\Users\lfrigenti\source\repos\WFM02VS2019\Scheduler\ClientSideWebApp\ClientSideWebApp.Server\obj\Debug\netcoreapp3.0\staticwebassets\ClientSideWebApp.Server.StaticWebAssets.Manifest.cache
+C:\Users\lfrigenti\source\repos\WFM02VS2019\Scheduler\ClientSideWebApp\ClientSideWebApp.Server\obj\Debug\netcoreapp3.0\staticwebassets\ClientSideWebApp.Server.StaticWebAssets.xml
+C:\Users\lfrigenti\source\repos\WFM02VS2019\Scheduler\ClientSideWebApp\ClientSideWebApp.Server\obj\Debug\netcoreapp3.0\ClientSideWebApp.Server.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\lfrigenti\source\repos\WFM02VS2019\Scheduler\ClientSideWebApp\ClientSideWebApp.Server\obj\Debug\netcoreapp3.0\ClientSideWebApp.Server.AssemblyInfoInputs.cache
+C:\Users\lfrigenti\source\repos\WFM02VS2019\Scheduler\ClientSideWebApp\ClientSideWebApp.Server\obj\Debug\netcoreapp3.0\ClientSideWebApp.Server.AssemblyInfo.cs

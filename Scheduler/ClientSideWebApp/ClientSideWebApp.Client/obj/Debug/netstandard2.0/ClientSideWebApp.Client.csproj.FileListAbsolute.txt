@@ -1,0 +1,13 @@
+C:\Users\lfrigenti\source\repos\WFM02VS2019\Scheduler\ClientSideWebApp\ClientSideWebApp.Client\obj\Debug\netstandard2.0\ClientSideWebApp.Client.csprojAssemblyReference.cache
+C:\Users\lfrigenti\source\repos\WFM02VS2019\Scheduler\ClientSideWebApp\ClientSideWebApp.Client\obj\Debug\netstandard2.0\staticwebassets\ClientSideWebApp.Client.StaticWebAssets.Manifest.cache
+C:\Users\lfrigenti\source\repos\WFM02VS2019\Scheduler\ClientSideWebApp\ClientSideWebApp.Client\obj\Debug\netstandard2.0\staticwebassets\ClientSideWebApp.Client.StaticWebAssets.xml
+C:\Users\lfrigenti\source\repos\WFM02VS2019\Scheduler\ClientSideWebApp\ClientSideWebApp.Client\obj\Debug\netstandard2.0\ClientSideWebApp.Client.RazorComponent.input.cache
+C:\Users\lfrigenti\source\repos\WFM02VS2019\Scheduler\ClientSideWebApp\ClientSideWebApp.Client\obj\Debug\netstandard2.0\RazorDeclaration\App.razor.g.cs
+C:\Users\lfrigenti\source\repos\WFM02VS2019\Scheduler\ClientSideWebApp\ClientSideWebApp.Client\obj\Debug\netstandard2.0\RazorDeclaration\Pages\Counter.razor.g.cs
+C:\Users\lfrigenti\source\repos\WFM02VS2019\Scheduler\ClientSideWebApp\ClientSideWebApp.Client\obj\Debug\netstandard2.0\RazorDeclaration\Pages\FetchData.razor.g.cs
+C:\Users\lfrigenti\source\repos\WFM02VS2019\Scheduler\ClientSideWebApp\ClientSideWebApp.Client\obj\Debug\netstandard2.0\RazorDeclaration\Pages\Index.razor.g.cs
+C:\Users\lfrigenti\source\repos\WFM02VS2019\Scheduler\ClientSideWebApp\ClientSideWebApp.Client\obj\Debug\netstandard2.0\RazorDeclaration\Pages\_Imports.razor.g.cs
+C:\Users\lfrigenti\source\repos\WFM02VS2019\Scheduler\ClientSideWebApp\ClientSideWebApp.Client\obj\Debug\netstandard2.0\RazorDeclaration\Shared\MainLayout.razor.g.cs
+C:\Users\lfrigenti\source\repos\WFM02VS2019\Scheduler\ClientSideWebApp\ClientSideWebApp.Client\obj\Debug\netstandard2.0\RazorDeclaration\Shared\NavMenu.razor.g.cs
+C:\Users\lfrigenti\source\repos\WFM02VS2019\Scheduler\ClientSideWebApp\ClientSideWebApp.Client\obj\Debug\netstandard2.0\RazorDeclaration\Shared\SurveyPrompt.razor.g.cs
+C:\Users\lfrigenti\source\repos\WFM02VS2019\Scheduler\ClientSideWebApp\ClientSideWebApp.Client\obj\Debug\netstandard2.0\RazorDeclaration\_Imports.razor.g.cs
