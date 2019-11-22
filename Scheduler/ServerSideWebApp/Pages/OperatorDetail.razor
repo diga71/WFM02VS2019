@@ -1,10 +1,13 @@
 ﻿@page "/operatorDetail"
+@page "/operatorDetail/{Id:long}"
+@inject Domain.Service.OperatorService OperatorService
 @using Domain
 @inject NavigationManager NavigationManager
 
-<div hidden="@Visibility">
+<div>
     <h1>Operator detail</h1>
-    <form>
+    <div>
+        <p class="@UpdateResultCss">  @UpdateResult</p>
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="FirstName">Name</label>
@@ -21,26 +24,59 @@
                 <input type="email" class="form-control" id="inputEmail" placeholder="Email" @bind="operatore.EMail" />
             </div>
         </div>
-        <button @onclick="Save" class="btn btn-primary">Save</button>
+        <button @onclick="Update" class="btn btn-primary">Save</button>
         <button @onclick="Back" class="btn btn-secondary">Back</button>
-    </form>
+    </div>
+        
 </div>
 
 
 @code {
 
-    public bool Visibility { get { return operatore.Id == 0; } }
+    [Parameter]
+    public Domain.Operator operatore { get; set; } = new Domain.Operator() { Id = 0, FirstName = "", LastName = "", EMail = "" };
 
     [Parameter]
-    public Domain.Operator operatore { get; set; }  
+    public long Id { get; set; }
 
-    private void Save()
+    string UpdateResult { get; set; }
+    string UpdateResultCss { get; set; }
+
+
+
+    void Update()
     {
+        try
+        {
+            OperatorService.UpdateOperator(operatore);
+            UpdateResultCss = "text-info";
+            UpdateResult = "Operazione effettuata con successo";
 
+        }
+        catch (Exception err)
+        {
+            UpdateResultCss = "text-danger";
+            UpdateResult = $"Si è verificato un errore: {err.Message}";           
+        }
     }
+
 
     private void Back()
     {
-        NavigationManager.NavigateTo("operator");
+        NavigationManager.NavigateTo("operator", true);
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+        try
+        {
+            operatore = Id != 0 ? await OperatorService.RetrieveOperatorAsync(Id) : new Domain.Operator() { Id = 0, FirstName = "", LastName = "", EMail = "" };
+        }
+        catch (Exception err)
+        {
+            System.Diagnostics.Debug.WriteLine(err.ToString());
+            throw;
+        }
     }
 }

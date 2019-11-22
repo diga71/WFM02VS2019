@@ -179,25 +179,25 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\sdigaetano\\.nuget\\packages\\": {},
+    "C:\\Users\\lfrigenti\\.nuget\\packages\\": {},
     "C:\\Microsoft\\Xamarin\\NuGet\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Dev\\Samples\\WFM02VS2019\\Scheduler\\ClientSideWebApp\\ClientSideWebApp.Shared\\ClientSideWebApp.Shared.csproj",
+      "projectUniqueName": "C:\\Users\\lfrigenti\\source\\repos\\WFM02VS2019\\Scheduler\\ClientSideWebApp\\ClientSideWebApp.Shared\\ClientSideWebApp.Shared.csproj",
       "projectName": "ClientSideWebApp.Shared",
-      "projectPath": "C:\\Dev\\Samples\\WFM02VS2019\\Scheduler\\ClientSideWebApp\\ClientSideWebApp.Shared\\ClientSideWebApp.Shared.csproj",
-      "packagesPath": "C:\\Users\\sdigaetano\\.nuget\\packages\\",
-      "outputPath": "C:\\Dev\\Samples\\WFM02VS2019\\Scheduler\\ClientSideWebApp\\ClientSideWebApp.Shared\\obj\\",
+      "projectPath": "C:\\Users\\lfrigenti\\source\\repos\\WFM02VS2019\\Scheduler\\ClientSideWebApp\\ClientSideWebApp.Shared\\ClientSideWebApp.Shared.csproj",
+      "packagesPath": "C:\\Users\\lfrigenti\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\lfrigenti\\source\\repos\\WFM02VS2019\\Scheduler\\ClientSideWebApp\\ClientSideWebApp.Shared\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Microsoft\\Xamarin\\NuGet\\",
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\sdigaetano\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\lfrigenti\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],

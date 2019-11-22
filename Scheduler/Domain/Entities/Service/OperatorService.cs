@@ -40,7 +40,7 @@ namespace Domain.Service
             return operators.ToList();
         }
 
-        private Operator UpdateOperator(Operator wfOperator)
+        public Operator UpdateOperator(Operator wfOperator)
         {
             OperatorRepository operatorRepository = new OperatorRepository(this.UnitOfWork);
             operatorRepository.Update(wfOperator);
@@ -54,7 +54,7 @@ namespace Domain.Service
             return wfOperator;
         }
 
-        private Operator RetrieveOperator(long id)
+        public Operator RetrieveOperator(long id)
         {
             OperatorRepository operatorRepository = new OperatorRepository(this.UnitOfWork);
             return operatorRepository.GetById(id);

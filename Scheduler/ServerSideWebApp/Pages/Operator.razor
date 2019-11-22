@@ -3,11 +3,11 @@
 @inject Domain.Service.OperatorService OperatorService
 @inject NavigationManager NavigationManager
 
-<OperatorDetail operatore="@OperatoreDetail">
-</OperatorDetail>
+@*<OperatorDetail operatore="@OperatoreDetail">
+</OperatorDetail>*@
 
 
-<div hidden="@ShowDetail">
+<div>
     <h1>List operator</h1>
 
     @if (operators == null)
@@ -25,60 +25,28 @@
                 <th></th>
             </GridHeader>
             <GridRow>
-                @*<tr @ondblclick="@(e => DoubleClickRow(e, context))">*@
                     <td>@context.Id.ToString()</td>
                     <td>@context.LastName</td>
                     <td>@context.FirstName</td>
                     <td>@context.EMail</td>
                     <td @onclick="@(e => ClickEditRow(e, context))"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></td>
-                @*</tr>*@
             </GridRow>
         </BlazorGrid>
-
-        @*<br />
-
-        <table class="table table-hover">
-            <thead class="thead-light">
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Last name</th>
-                    <th scope="col">First name</th>
-                    <th scope="col">EMail</th>
-                    <th scope="col"></th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in operators)
-                {
-                    <tr @ondblclick="@(e => DoubleClickRow(e, item))">
-                        <td>@item.Id.ToString()</td>
-                        <td>@item.LastName</td>
-                        <td>@item.FirstName</td>
-                        <td>@item.EMail</td>
-                        <td @onclick="@(e => ClickEditRow(e, item))"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></td>
-                    </tr>
-                }
-            </tbody>
-        </table>*@
     }
 </div>
 
 @code {
 
-    bool ShowDetail { get { return OperatoreDetail.Id != 0; } }
+    List<Domain.Operator> operators;
 
-    Domain.Operator OperatoreDetail = new Domain.Operator() { Id = 0, FirstName = "", LastName = "", EMail = "" };
+    //void DoubleClickRow(MouseEventArgs e, Domain.Operator operatore)
+    //{
+    //    NavigationManager.NavigateTo($"operatorDetail/{ operatore.Id}");        
+    //}
 
-    List<Domain.Operator> operators; // = new List<Domain.Operator>();
-
-    void DoubleClickRow(MouseEventArgs e, Domain.Operator @operator)
+    void ClickEditRow(MouseEventArgs e, Domain.Operator operatore)
     {
-        OperatoreDetail = @operator;
-    }
-
-    void ClickEditRow(MouseEventArgs e, Domain.Operator @operator)
-    {
-         OperatoreDetail = @operator;
+        NavigationManager.NavigateTo($"operatorDetail/{ operatore.Id}");
     }
 
     protected override async Task OnInitializedAsync()
